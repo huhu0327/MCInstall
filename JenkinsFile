@@ -3,21 +3,21 @@ node {
             git 'https://github.com/huhu0327/MCInstall.git'
     }
 
-    // stage('Restore') {
+    stage('Restore') {
 
-    // }
+    }
 
-    // stage('Test') {
+    stage('Test') {
 
-    // }
+    }
 
-    // stage('Analysis')
+    stage('Analysis')
 
-    // stage('Build') {
+    stage('Build') {
 
-    // }
+    }
 
-    // stage('Deploy') {
+    stage('Deploy') {
 
-    // }
+    }
 }
