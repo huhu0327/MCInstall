@@ -10,7 +10,7 @@ namespace Test
         {
             int test = 10;
 
-            Assert.AreEqual(test, 11);
+            Assert.AreEqual(test, 10);
         }
     }
 }
