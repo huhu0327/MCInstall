@@ -11,6 +11,10 @@ namespace Test
             int test = 10;
 
             Assert.AreEqual(test, 10);
+
+            bool isRight = false;
+
+            Assert.IsFalse(isRight);
         }
     }
 }
