@@ -9,29 +9,21 @@ namespace MCInstall.ViewModels.Base
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
-        protected bool Set<T>(ref T field, T newValue = default(T), [CallerMemberName] string name = null)
+        protected bool Set<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
         {
-            if (EqualityComparer<T>.Default.Equals(field, newValue))
+            if (EqualityComparer<T>.Default.Equals(field, value))
             {
                 return false;
             }
 
-            field = newValue;
+            field = value;
 
-            OnPropertyChanged(name);
+            OnPropertyChanged(propertyName);
 
             return true;
         }
 
-        protected virtual void OnPropertyChanged([CallerMemberName] string name = null)
-        {
-            if (string.IsNullOrWhiteSpace((name)))
-            {
-                return;
-            }
-
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
-        }
+        protected virtual void OnPropertyChanged(string propertyName) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
 
     public interface IViewModel { }
