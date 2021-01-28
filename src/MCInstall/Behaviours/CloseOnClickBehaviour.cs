@@ -25,7 +25,7 @@ namespace MCInstall.Behaviours
 
         private static void OnIsEnabledPropertyChanged(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs args)
         {
-            if (!(dependencyObject is Button button) || (args.NewValue is bool) ==  false)
+            if (dependencyObject is not Button button || (args.NewValue is bool) ==  false)
                 return;
 
             if ((bool)args.NewValue == true)
@@ -39,7 +39,7 @@ namespace MCInstall.Behaviours
 
         private static void OnClick(object sender, RoutedEventArgs e)
         {
-            if (!(sender is Button button))
+            if (sender is not Button button)
                 return;
 
             var window = Window.GetWindow(button);
