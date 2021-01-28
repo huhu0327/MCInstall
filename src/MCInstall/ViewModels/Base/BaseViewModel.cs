@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
@@ -24,6 +25,11 @@ namespace MCInstall.ViewModels.Base
 
         protected virtual void OnPropertyChanged([CallerMemberName] string name = null)
         {
+            if (string.IsNullOrWhiteSpace((name)))
+            {
+                return;
+            }
+
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
     }
