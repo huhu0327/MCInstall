@@ -10,11 +10,7 @@ namespace MCInstall.Commands
 
         public ActionCommand(Action<Object> action) : this(action, null) { }
 
-        public ActionCommand(Action<Object> action, Predicate<Object> predicate)
-        {
-            _action = action ?? throw new ArgumentNullException(nameof(action), @"You must specify an Action<T>.");
-            _predicate = predicate;
-        }
+        public ActionCommand(Action<Object> action, Predicate<Object> predicate) => (_action, _predicate) = (action ?? throw new ArgumentNullException(nameof(action), @"You must specify an Action<T>."), predicate);
 
         public event EventHandler CanExecuteChanged
         {
