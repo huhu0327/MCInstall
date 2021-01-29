@@ -16,7 +16,6 @@
 
     <Style BasedOn="{StaticResource BaseStyle}" TargetType="{x:Type Button}">
         <Setter Property="OverridesDefaultStyle" Value="True" />
-        <Setter Property="IsTabStop" Value="False" />
         <Setter Property="Padding" Value="10" />
         <Setter Property="BorderBrush" Value="Gray" />
         <Setter Property="BorderThickness" Value="1" />
