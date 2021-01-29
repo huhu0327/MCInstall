@@ -6,12 +6,11 @@
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="/Styles/Base/Fonts.xaml" />
-                <ResourceDictionary Source="/Styles/Base/Colors.xaml" />
-                <ResourceDictionary Source="/Styles/Base/Sizes.xaml" />
+                <ResourceDictionary Source="/MCInstall;component/Styles/Base/Fonts.xaml" />
+                <ResourceDictionary Source="/MCInstall;component/Styles/Base/Colors.xaml" />
+                <ResourceDictionary Source="/MCInstall;component/Styles/Base/Sizes.xaml" />
 
-                <ResourceDictionary Source="/Styles/Base/BaseStyle.xaml" />
-
+                <ResourceDictionary Source="/MCInstall;component/Styles/Base/BaseStyle.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>
