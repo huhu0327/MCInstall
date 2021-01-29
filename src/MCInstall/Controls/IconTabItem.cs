@@ -9,12 +9,7 @@ namespace MCInstall.Controls
         public static readonly DependencyProperty IconProperty =
             DependencyProperty.Register(
                 "Icon", typeof(PackIconFontAwesomeKind), typeof(IconTabItem));
-
-        static IconTabItem()
-        {
-            DefaultStyleKeyProperty.OverrideMetadata(typeof(IconTabItem), new FrameworkPropertyMetadata(typeof(IconTabItem)));
-        }
-
+        
         public PackIconFontAwesomeKind Icon
         {
             get => (PackIconFontAwesomeKind)GetValue(IconProperty);
