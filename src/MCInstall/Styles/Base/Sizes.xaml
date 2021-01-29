@@ -8,17 +8,31 @@
     <system:Double x:Key="FontSizeLarge">32</system:Double>
 
     <Thickness
-        x:Key="ControlHorizontalMargin"
+        x:Key="ControlLeftMargin"
         Bottom="0"
         Left="5"
         Right="0"
         Top="0" />
 
     <Thickness
-        x:Key="ControlVerticalMargin"
+        x:Key="ControlRightMargin"
+        Bottom="0"
+        Left="0"
+        Right="5"
+        Top="0" />
+
+    <Thickness
+        x:Key="ControlTopMargin"
         Bottom="0"
         Left="0"
         Right="0"
         Top="20" />
+
+    <Thickness
+        x:Key="ControlBottomMargin"
+        Bottom="20"
+        Left="0"
+        Right="0"
+        Top="0" />
 
 </ResourceDictionary>
