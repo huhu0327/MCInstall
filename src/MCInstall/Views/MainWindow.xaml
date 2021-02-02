@@ -18,8 +18,8 @@
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="/Styles/TabControl.xaml" />
-                <ResourceDictionary Source="/Themes/Generic.xaml" />
+                <ResourceDictionary Source="/MCInstall;component/Styles/TabControl.xaml" />
+                <ResourceDictionary Source="/MCInstall;component/Themes/Generic.xaml" />
             </ResourceDictionary.MergedDictionaries>
 
             <DataTemplate DataType="{x:Type vm:MainWindowViewModel}">
@@ -44,17 +44,17 @@
             CornerRadius="10, 10, 0, 0">
             <Grid>
                 <TextBlock
-                    Margin="10,0,0,0"
+                    Margin="10 0 0 0"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Center"
-                    FontFamily="{StaticResource KopubBold}"
+                    FontFamily="{StaticResource KoPubBold}"
                     FontSize="{StaticResource FontSizeRegular}"
                     Text="MCInstall" />
 
                 <Button
                     Width="40"
                     Height="40"
-                    Margin="0,0,10,0"
+                    Margin="0 0 10 0"
                     HorizontalAlignment="Right"
                     VerticalAlignment="Center"
                     b:CloseOnClickBehaviour.IsEnabled="True">
@@ -79,6 +79,7 @@
                 DataContext="{Binding TabItems}"
                 ItemsSource="{Binding}"
                 Style="{StaticResource TabControl}">
+
                 <TabControl.ItemContainerStyle>
                     <Style BasedOn="{StaticResource ImageTabItem}" TargetType="{x:Type c:IconTabItem}">
                         <Setter Property="Header" Value="{Binding Header}" />

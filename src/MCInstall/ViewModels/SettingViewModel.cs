@@ -22,9 +22,11 @@ namespace MCInstall.ViewModels
             set => Set(ref _isInitMinecraft, value);
         }
 
-        public ICommand PositionCommand => new ActionCommand(o => { });
+        private ICommand _positionCommand;
+        public ICommand PositionCommand => _positionCommand ??= new ActionCommand(o => { });
 
-        public ICommand SyncGoogleCommand => new ActionCommand(o => { });
+        private ICommand _syncGoogleCommand;
+        public ICommand SyncGoogleCommand => _syncGoogleCommand ??= new ActionCommand(o => { });
 
     }
 }

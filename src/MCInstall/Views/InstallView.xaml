@@ -13,10 +13,14 @@
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="/Styles/Texts.xaml" />
+                <ResourceDictionary Source="/MCInstall;component/Styles/Textboxes.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
+
+    <UserControl.DataContext>
+        <vm:InstallViewModel />
+    </UserControl.DataContext>
 
     <StackPanel>
 
@@ -24,15 +28,16 @@
         <TextBox
             b:KeyboardHelper.IsBlockSpacebar="True"
             Style="{StaticResource CodeTextBox}"
-            Text="{Binding Title}" />
+            Text="{Binding Code}" />
 
         <Button
             Width="{Binding RelativeSource={RelativeSource AncestorType=UserControl}, Path=Width}"
-            Margin="{StaticResource ControlVerticalMargin}"
+            Margin="{StaticResource ControlTopMargin}"
             Padding="15"
             HorizontalAlignment="Center"
             VerticalAlignment="Center"
             BorderThickness="1"
+            Command="{Binding InstallCommand}"
             Content="설치"
             FontSize="{StaticResource FontSizeRegular}" />
 

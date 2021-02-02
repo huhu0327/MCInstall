@@ -14,9 +14,7 @@ namespace MCInstall.ViewModels
             set => Set(ref _code, value);
         }
 
-        public ICommand UploadCommand
-        {
-            get => new ActionCommand(o => {});
-        }
+        private ICommand _uploadCommand;
+        public ICommand UploadCommand => _uploadCommand ??= new ActionCommand(o => {});
     }
 }

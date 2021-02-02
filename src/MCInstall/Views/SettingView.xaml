@@ -5,35 +5,45 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:vm="clr-namespace:MCInstall.ViewModels"
     Width="350"
     d:DesignHeight="450"
     mc:Ignorable="d">
 
+    <UserControl.DataContext>
+        <vm:SettingViewModel />
+    </UserControl.DataContext>
+
     <StackPanel>
-        <Button>
+        <Button Command="{Binding SyncGoogleCommand}">
             <StackPanel Orientation="Horizontal">
                 <iconPacks:PackIconFontAwesome
-                    Margin="0,0,5,0"
+                    Margin="0 0 5 0"
                     VerticalAlignment="Center"
                     Kind="GoogleDriveBrands" />
                 <TextBlock Text="구글 연동" />
             </StackPanel>
         </Button>
 
-        <TextBlock Margin="{StaticResource ControlVerticalMargin}" Text=".minecraft 폴더 위치" />
+        <TextBlock Margin="{StaticResource ControlTopMargin}" Text=".minecraft 폴더 위치" />
         <StackPanel Orientation="Horizontal">
-            <TextBox Width="310" VerticalContentAlignment="Center" />
+            <TextBox
+                Width="310"
+                VerticalContentAlignment="Center"
+                Text="{Binding MinecraftDirectory}" />
             <Button
                 Width="35"
-                Margin="{StaticResource ControlHorizontalMargin}"
+                Margin="{StaticResource ControlLeftMargin}"
                 BorderThickness="1"
+                Command="{Binding PositionCommand}"
                 Content="..." />
         </StackPanel>
 
         <CheckBox
-            Margin="{StaticResource ControlVerticalMargin}"
+            Margin="{StaticResource ControlTopMargin}"
             VerticalContentAlignment="Center"
-            Content="설치 시 마인크래프트 초기화" />
+            Content="설치 시 마인크래프트 초기화"
+            IsChecked="{Binding IsInitMinecraft}" />
 
     </StackPanel>
 
