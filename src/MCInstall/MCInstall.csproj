@@ -26,4 +26,8 @@
     <Folder Include="Usercontrols\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\MCInstall.Core\MCInstall.Core.csproj" />
+  </ItemGroup>
+
 </Project>
