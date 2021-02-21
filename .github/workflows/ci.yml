@@ -18,10 +18,14 @@ jobs:
         with:
           dotnet-version: 5.0.x
 
-      - run: dotnet restore ${{env.PROJECT_PATH}}
+      - name: Restore
+        run: dotnet restore ${{env.PROJECT_PATH}}
 
-      - run: dotnet clean ${{env.PROJECT_PATH}}
+      - name: Clean
+        run: dotnet clean ${{env.PROJECT_PATH}}
 
-      - run: dotnet build ${{env.PROJECT_PATH}} -c release --no-restore
+      - name: Build
+        run: dotnet build ${{env.PROJECT_PATH}} -c release --no-restore
 
-      - run: dotnet test ${{env.PROJECT_PATH}} -c release --no-build
+      - name: Test
+        run: dotnet test ${{env.PROJECT_PATH}} -c release --no-build
