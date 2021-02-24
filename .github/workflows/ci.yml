@@ -1,31 +1,29 @@
 name: MCInstall
 
-on:
-  push:
-    branches: [ develop ]
+on: [push]
 
 jobs:
   build:
     runs-on: windows-latest
 
     env:
-      PROJECT_PATH: src
+      PROJECT_PATH: src/MCInstall
+      TEST_PROJECT: src/MCInstall.Test
 
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout
+        uses: actions/checkout@v2
 
-      - uses: actions/setup-dotnet@v1
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v1
         with:
           dotnet-version: 5.0.x
 
       - name: Restore
         run: dotnet restore ${{ env.PROJECT_PATH }}
 
-      - name: Clean
-        run: dotnet clean ${{ env.PROJECT_PATH }}
-
       - name: Build
         run: dotnet build ${{ env.PROJECT_PATH }} -c release --no-restore
 
       - name: Test
-        run: dotnet test ${{ env.PROJECT_PATH }} -c release --no-build
+        run: dotnet test ${{ env.TEST_PROJECT }} -c release
