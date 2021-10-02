@@ -1,4 +1,5 @@
-﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <Color x:Key="BackgroundLight">#ffffff</Color>
     <SolidColorBrush x:Key="BackgroundLightBrush" Color="{StaticResource BackgroundLight}" />
@@ -6,10 +7,10 @@
     <Color x:Key="ForegroundLight">#ffffff</Color>
     <SolidColorBrush x:Key="ForegroundLightBrush" Color="{StaticResource BackgroundLight}" />
 
-    <Color x:Key="Color2">#e3f6f5</Color>
-    <SolidColorBrush x:Key="Color2Brush" Color="{StaticResource Color2}" />
+    <Color x:Key="Color1">#6A7BCD</Color>
+    <SolidColorBrush x:Key="Color1Brush" Color="{StaticResource Color1}" />
 
-    <Color x:Key="BackgroundLigth2">#ebf1f4</Color>
-    <SolidColorBrush x:Key="BackgroundLigth2Brush" Color="{StaticResource BackgroundLigth2}" />
+    <Color x:Key="BackgroundLight2">#ebf1f4</Color>
+    <SolidColorBrush x:Key="BackgroundLight2Brush" Color="{StaticResource BackgroundLight2}" />
 
 </ResourceDictionary>

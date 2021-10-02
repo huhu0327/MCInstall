@@ -1,40 +1,36 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 
 namespace MCInstall.Behaviours
 {
     internal class CloseOnClickBehaviour
     {
-        public static readonly DependencyProperty IsEnabledProperty =
+        public static readonly DependencyProperty IsEnableProperty =
             DependencyProperty.RegisterAttached(
                 "IsEnable",
                 typeof(bool),
                 typeof(CloseOnClickBehaviour),
-                new PropertyMetadata(default(bool), OnIsEnabledPropertyChanged));
+                new PropertyMetadata(default(bool), OnIsEnablePropertyChanged));
 
 
-        public static void SetIsEnabled(DependencyObject dependencyObject, bool value)
+        public static void SetIsEnable(DependencyObject dependencyObject, bool value)
         {
-            dependencyObject.SetValue(IsEnabledProperty, value);
+            dependencyObject.SetValue(IsEnableProperty, value);
         }
 
-        private static void OnIsEnabledPropertyChanged(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs args)
+        private static void OnIsEnablePropertyChanged(DependencyObject dependencyObject,
+            DependencyPropertyChangedEventArgs args)
         {
-            if (dependencyObject is not Button button || (args.NewValue is bool) ==  false)
+            if (dependencyObject is not Button button || args.NewValue is not bool newValue)
                 return;
 
-            if ((bool)args.NewValue == true)
+            if (newValue)
             {
                 button.Click += OnClick;
                 return;
             }
 
-            button.PreviewMouseLeftButtonDown -= OnClick;
+            button.Click -= OnClick;
         }
 
         private static void OnClick(object sender, RoutedEventArgs e)
@@ -46,6 +42,5 @@ namespace MCInstall.Behaviours
 
             window?.Close();
         }
-
     }
 }

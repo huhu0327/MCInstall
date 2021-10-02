@@ -2,48 +2,37 @@
     x:Class="MCInstall.Views.SettingView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:behaviour="clr-namespace:MCInstall.Behaviours"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:vm="clr-namespace:MCInstall.ViewModels"
     Width="350"
     d:DesignHeight="450"
     mc:Ignorable="d">
 
-    <UserControl.DataContext>
-        <vm:SettingViewModel />
-    </UserControl.DataContext>
-
     <StackPanel>
-        <Button Command="{Binding SyncGoogleCommand}">
-            <StackPanel Orientation="Horizontal">
-                <iconPacks:PackIconFontAwesome
-                    Margin="0 0 5 0"
-                    VerticalAlignment="Center"
-                    Kind="GoogleDriveBrands" />
-                <TextBlock Text="구글 연동" />
-            </StackPanel>
+        <Button
+            Background="{StaticResource Color1Brush}"
+            Command="{Binding SyncGoogleCommand}"
+            Content="&#xf132;"
+            Foreground="{StaticResource ForegroundLightBrush}">
+            <!--<TextBlock Text="구글 연동" />-->
         </Button>
-
         <TextBlock Margin="{StaticResource ControlTopMargin}" Text=".minecraft 폴더 위치" />
         <StackPanel Orientation="Horizontal">
             <TextBox
+                x:Name="test"
                 Width="310"
                 VerticalContentAlignment="Center"
-                Text="{Binding MinecraftDirectory}" />
+                Text="{Binding MinecraftDirectory}"
+                TextAlignment="Left" />
             <Button
                 Width="35"
                 Margin="{StaticResource ControlLeftMargin}"
+                Background="{StaticResource Color1Brush}"
                 BorderThickness="1"
                 Command="{Binding PositionCommand}"
                 Content="..." />
         </StackPanel>
-
-        <CheckBox
-            Margin="{StaticResource ControlTopMargin}"
-            VerticalContentAlignment="Center"
-            Content="설치 시 마인크래프트 초기화"
-            IsChecked="{Binding IsInitMinecraft}" />
 
     </StackPanel>
 

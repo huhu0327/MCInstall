@@ -4,23 +4,9 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:vm="clr-namespace:MCInstall.ViewModels"
     Width="350"
     d:DesignHeight="450"
     mc:Ignorable="d">
-
-    <UserControl.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="/MCInstall;component/Styles/Textboxes.xaml" />
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
-    </UserControl.Resources>
-
-    <UserControl.DataContext>
-        <vm:UploadViewModel />
-    </UserControl.DataContext>
-
 
     <StackPanel>
         <ListView Height="130">
@@ -64,8 +50,10 @@
 
         <Button
             Margin="{StaticResource ControlTopMargin}"
+            Background="{StaticResource Color1Brush}"
             Command="{Binding UploadCommand}"
-            Content="업로드" />
+            Content="업로드"
+            Foreground="{StaticResource ForegroundLightBrush}" />
 
         <TextBlock Margin="{StaticResource ControlTopMargin}" Text="코드" />
         <TextBox

@@ -1,35 +1,37 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <OutputType>WinExe</OutputType>
-    <TargetFramework>net5.0-windows</TargetFramework>
-    <UseWPF>true</UseWPF>
-    <Platforms>AnyCPU;x64;x86</Platforms>
-  </PropertyGroup>
+    <PropertyGroup>
+        <OutputType>WinExe</OutputType>
+        <TargetFramework>net5.0-windows</TargetFramework>
+        <UseWPF>true</UseWPF>
+        <Platforms>AnyCPU;x64;x86</Platforms>
+    </PropertyGroup>
 
-  <ItemGroup>
-    <None Remove="log4net.config" />
-  </ItemGroup>
+    <ItemGroup>
+        <None Remove="Assets\Fonts\fontawesome-webfont.ttf" />
+    </ItemGroup>
 
-  <ItemGroup>
-    <Resource Include="Assets\Fonts\KoPubWorld Dotum Bold.ttf" />
-    <Resource Include="Assets\Fonts\KoPubWorld Dotum Light.ttf" />
-    <Resource Include="Assets\Fonts\KoPubWorld Dotum Medium.ttf" />
-  </ItemGroup>
+    <ItemGroup>
+        <Resource Include="Assets\Fonts\fontawesome-webfont.ttf">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </Resource>
+        <Resource Include="Assets\Fonts\KoPubWorld Dotum Bold.ttf">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </Resource>
+        <Resource Include="Assets\Fonts\KoPubWorld Dotum Light.ttf">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </Resource>
+        <Resource Include="Assets\Fonts\KoPubWorld Dotum Medium.ttf">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </Resource>
+    </ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="MahApps.Metro.IconPacks.FontAwesome" Version="4.8.0" />
-    <PackageReference Include="Microsoft-WindowsAPICodePack-Shell" Version="1.1.4" />
-    <PackageReference Include="PropertyChanged.Fody" Version="3.3.1" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Converters\" />
-    <Folder Include="Usercontrols\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\MCInstall.Core\MCInstall.Core.csproj" />
-  </ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="Microsoft-WindowsAPICodePack-Shell" Version="1.1.4" />
+        <PackageReference Include="Microsoft.Extensions.Hosting" Version="5.0.0" />
+        <PackageReference Include="PropertyChanged.Fody" Version="3.3.1" PrivateAssets="All" />
+        <PackageReference Include="Serilog.Extensions.Hosting" Version="4.1.2" />
+        <PackageReference Include="Serilog.Sinks.Debug" Version="2.0.0" />
+    </ItemGroup>
 
 </Project>

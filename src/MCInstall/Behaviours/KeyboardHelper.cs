@@ -1,18 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace MCInstall.Behaviours
 {
     internal class KeyboardHelper
     {
         public static readonly DependencyProperty IsBlockSpacebarProperty =
-            DependencyProperty.RegisterAttached("IsBlockSpacebar", typeof(bool), typeof(KeyboardHelper), new PropertyMetadata(default(bool), OnTextboxPropertyChanged));
+            DependencyProperty.RegisterAttached("IsBlockSpacebar", typeof(bool), typeof(KeyboardHelper),
+                new PropertyMetadata(default(bool), OnTextboxPropertyChanged));
 
         public static void SetIsBlockSpacebar(DependencyObject dependencyObject, bool value)
         {
@@ -20,11 +16,12 @@ namespace MCInstall.Behaviours
         }
 
 
-        private static void OnTextboxPropertyChanged(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs args)
+        private static void OnTextboxPropertyChanged(DependencyObject dependencyObject,
+            DependencyPropertyChangedEventArgs args)
         {
             if (dependencyObject is not TextBox textbox) return;
 
-            if ((bool)args.NewValue == true)
+            if ((bool) args.NewValue)
             {
                 textbox.PreviewKeyDown += OnKeyDown;
                 return;
@@ -33,9 +30,9 @@ namespace MCInstall.Behaviours
             textbox.PreviewKeyDown -= OnKeyDown;
         }
 
-        private static void OnKeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        private static void OnKeyDown(object sender, KeyEventArgs e)
         {
-            e.Handled = (e.Key == System.Windows.Input.Key.Space);
+            e.Handled = e.Key is Key.Space;
         }
     }
 }
