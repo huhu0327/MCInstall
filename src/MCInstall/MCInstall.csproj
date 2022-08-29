@@ -1,35 +1,42 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <OutputType>WinExe</OutputType>
-    <TargetFramework>net5.0-windows</TargetFramework>
-    <UseWPF>true</UseWPF>
-    <Platforms>AnyCPU;x64;x86</Platforms>
-  </PropertyGroup>
+    <PropertyGroup>
+        <OutputType>WinExe</OutputType>
+        <TargetFramework>net6.0-windows</TargetFramework>
+        <UseWPF>true</UseWPF>
+        <Platforms>AnyCPU;x64;x86</Platforms>
+        <PlatformTarget>x64</PlatformTarget>
+        <StartupObject>MCInstall.App</StartupObject>
+        <EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
+        <RunAnalyzersDuringLiveAnalysis>False</RunAnalyzersDuringLiveAnalysis>
+        <RunAnalyzersDuringBuild>False</RunAnalyzersDuringBuild>
+        <EnableNETAnalyzers>False</EnableNETAnalyzers>
+    </PropertyGroup>
 
-  <ItemGroup>
-    <None Remove="log4net.config" />
-  </ItemGroup>
+    <ItemGroup>
+      <None Remove="Assets\Fonts\Pretendard-Bold.otf" />
+      <None Remove="Assets\Fonts\Pretendard-Light.otf" />
+      <None Remove="Assets\Fonts\Pretendard-Medium.otf" />
+    </ItemGroup>
 
-  <ItemGroup>
-    <Resource Include="Assets\Fonts\KoPubWorld Dotum Bold.ttf" />
-    <Resource Include="Assets\Fonts\KoPubWorld Dotum Light.ttf" />
-    <Resource Include="Assets\Fonts\KoPubWorld Dotum Medium.ttf" />
-  </ItemGroup>
+    <ItemGroup>
+        <Resource Include="Assets\Fonts\fontawesome-webfont.ttf">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </Resource>
+        <Resource Include="Assets\Fonts\Pretendard-Bold.otf" />
+        <Resource Include="Assets\Fonts\Pretendard-Light.otf" />
+        <Resource Include="Assets\Fonts\Pretendard-Medium.otf" />
+    </ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="MahApps.Metro.IconPacks.FontAwesome" Version="4.8.0" />
-    <PackageReference Include="Microsoft-WindowsAPICodePack-Shell" Version="1.1.4" />
-    <PackageReference Include="PropertyChanged.Fody" Version="3.3.1" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Converters\" />
-    <Folder Include="Usercontrols\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\MCInstall.Core\MCInstall.Core.csproj" />
-  </ItemGroup>
-
+    <ItemGroup>
+      <PackageReference Include="Costura.Fody" Version="5.7.0">
+        <PrivateAssets>all</PrivateAssets>
+        <IncludeAssets>runtime; build; native; contentfiles; analyzers; compile; buildtransitive</IncludeAssets>
+      </PackageReference>
+      <PackageReference Include="Microsoft-WindowsAPICodePack-Shell" Version="1.1.4" />
+      <PackageReference Include="Microsoft.Extensions.Hosting" Version="6.0.1" />
+      <PackageReference Include="PropertyChanged.Fody" Version="3.4.1" PrivateAssets="All" />
+      <PackageReference Include="Serilog.Extensions.Hosting" Version="5.0.1" />
+      <PackageReference Include="Serilog.Sinks.Debug" Version="2.0.0" />
+    </ItemGroup>
 </Project>

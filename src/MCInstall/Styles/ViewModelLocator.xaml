@@ -1,0 +1,24 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:v="clr-namespace:MCInstall.Views"
+    xmlns:vm="clr-namespace:MCInstall.ViewModels">
+
+    <v:DownloadView x:Key="DownloadViewKey" />
+    <DataTemplate DataType="{x:Type vm:DownloadViewModel}">
+        <ContentPresenter Content="{StaticResource DownloadViewKey}" />
+        <!--<v:DownloadView />-->
+    </DataTemplate>
+
+    <v:UploadView x:Key="UploadViewKey" />
+    <DataTemplate DataType="{x:Type vm:UploadViewModel}">
+        <ContentPresenter Content="{StaticResource UploadViewKey}" />
+        <!--<v:UploadView />-->
+    </DataTemplate>
+
+    <v:SettingView x:Key="SettingViewKey" />
+    <DataTemplate DataType="{x:Type vm:SettingViewModel}">
+        <ContentPresenter Content="{StaticResource SettingViewKey}" />
+        <!--<v:SettingView />-->
+    </DataTemplate>
+</ResourceDictionary>
