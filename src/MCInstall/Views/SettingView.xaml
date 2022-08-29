@@ -2,10 +2,12 @@
     x:Class="MCInstall.Views.SettingView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:behaviour="clr-namespace:MCInstall.Behaviours"
+    xmlns:b="clr-namespace:MCInstall.Behaviors"
+    xmlns:vm="clr-namespace:MCInstall.ViewModels"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Width="350"
+    d:DataContext="{d:DesignInstance vm:SettingViewModel}"
     d:DesignHeight="450"
     mc:Ignorable="d">
 
@@ -13,16 +15,19 @@
         <Button
             Background="{StaticResource Color1Brush}"
             Command="{Binding SyncGoogleCommand}"
-            Content="&#xf132;"
+            Content="&#xf3aa;"
             Foreground="{StaticResource ForegroundLightBrush}">
             <!--<TextBlock Text="구글 연동" />-->
         </Button>
         <TextBlock Margin="{StaticResource ControlTopMargin}" Text=".minecraft 폴더 위치" />
         <StackPanel Orientation="Horizontal">
             <TextBox
-                x:Name="test"
+                b:FocusBehavior.IsFocused="{Binding DirectoryFocused, UpdateSourceTrigger=PropertyChanged}"
                 Width="310"
-                VerticalContentAlignment="Center"
+                MaxLength="0"
+                Style="{StaticResource CodeTextBox}"
+                FontSize="12"
+                Height="40"
                 Text="{Binding MinecraftDirectory}"
                 TextAlignment="Left" />
             <Button
@@ -33,6 +38,8 @@
                 Command="{Binding PositionCommand}"
                 Content="..." />
         </StackPanel>
+
+        <TextBlock Foreground="Red">올바르지 않은 위치입니다.</TextBlock>
 
     </StackPanel>
 

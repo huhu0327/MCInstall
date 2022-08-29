@@ -1,49 +1,49 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Reflection;
-using System.Windows.Controls;
-using System.Windows.Input;
-using MCInstall.Commands;
+﻿using MCInstall.Commands;
 using MCInstall.ViewModels.Base;
-using MCInstall.Views;
+using System.Windows.Input;
 
 namespace MCInstall.ViewModels
 {
     public class MainWindowViewModel : BaseViewModel
     {
-        private readonly DownloadViewModel _downloadViewModel;
-        private readonly UploadViewModel _uploadViewModel;
-        private readonly SettingViewModel _settingViewModel;
-
+        private readonly IBaseViewModel _downloadViewModel;
+        private readonly IBaseViewModel _uploadViewModel;
+        private readonly IBaseViewModel _settingViewModel;
 
         public MainWindowViewModel(DownloadViewModel downloadViewModel, UploadViewModel uploadViewModel, SettingViewModel settingViewModel)
         {
             _downloadViewModel = downloadViewModel;
             _uploadViewModel = uploadViewModel;
             _settingViewModel = settingViewModel;
-            
-            View = _downloadViewModel;
+
+            ViewModel = _downloadViewModel;
         }
 
-        public IViewModel View { get; set; }
+        public IBaseViewModel ViewModel { get; set; }
 
-        public ICommand ClickDownloadMenu => new BaseCommand(ShowDownloadView);
-        public ICommand ClickUploadMenu => new BaseCommand(ShowUploadView);
-        public ICommand ClickSettingMenu => new BaseCommand(ShowSettingView);
+        public ICommand ClickDownloadMenu => new BaseCommand(_ => ChangeView(_downloadViewModel));
+        public ICommand ClickUploadMenu => new BaseCommand(_ =>ChangeView(_uploadViewModel));
+        public ICommand ClickSettingMenu => new BaseCommand(_ => ChangeView(_settingViewModel));
 
-        private void ShowDownloadView(object o)
+        protected override void Dispose(bool isDisposing)
         {
-            View = _downloadViewModel;
+            if (_disposed) return;
+
+            if (isDisposing)
+            {
+
+            }
+
+            base.Dispose(isDisposing);
         }
-        
-        private void ShowUploadView(object o)
+
+        private void ChangeView(IBaseViewModel viewModel)
         {
-            View = _uploadViewModel;
+            ViewModel.OnDisable();
+            ViewModel = viewModel;
+            ViewModel.OnEnable();
         }
-        
-        private void ShowSettingView(object o)
-        {
-            View = _settingViewModel;
-        }
+
+
     }
 }

@@ -1,55 +1,80 @@
-﻿using System;
-using System.IO;
-using System.Threading.Tasks;
-using System.Windows.Input;
-using MCInstall.Commands;
+﻿using MCInstall.Commands;
 using MCInstall.ViewModels.Base;
 using Microsoft.WindowsAPICodePack.Dialogs;
+using System;
+using System.IO;
+using System.Windows.Input;
 
 namespace MCInstall.ViewModels
 {
     public class SettingViewModel : BaseViewModel
     {
+        private string _minecraftDirectory;
         private ICommand _positionCommand;
         private ICommand _syncGoogleCommand;
+        private readonly CommonOpenFileDialog _openFileDialog;
 
         public SettingViewModel()
         {
             var directory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
                 ".minecraft");
 
-            if (!Directory.Exists(directory)) return;
-
-            MinecraftDirectory = directory;
+            MinecraftDirectory = Directory.Exists(directory) ? directory : Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
+            _openFileDialog = new CommonOpenFileDialog { IsFolderPicker = true };
         }
 
-
-        public string MinecraftDirectory { get; set; }
-
-        public ICommand PositionCommand => _positionCommand ??= new BaseCommand(FindFolderDirectory);
-        public ICommand SyncGoogleCommand => _syncGoogleCommand ??= new BaseCommand(o => { });
-
-        private async void FindFolderDirectory(object o)
+        public string MinecraftDirectory
         {
-            MinecraftDirectory = await GetFolderDirectoryAsync();
-        }
-
-        private Task<string> GetFolderDirectoryAsync()
-        {
-            var currentDirectory = MinecraftDirectory;
-
-            var dialog = new CommonOpenFileDialog()
+            get => _minecraftDirectory;
+            set
             {
-                IsFolderPicker = true,
-                InitialDirectory = currentDirectory,
-            };
+                if (_minecraftDirectory == value || string.IsNullOrEmpty(value)) return;
 
-            if (dialog.ShowDialog() is CommonFileDialogResult.Ok)
-            {
-                currentDirectory = dialog.FileName;
+                if (Directory.Exists(value))
+                {
+                    _minecraftDirectory = value;
+                }
             }
 
-            return Task.FromResult(currentDirectory);
+        }
+
+        public bool? DirectoryFocused { get; set; }
+
+        public ICommand PositionCommand => _positionCommand ??= new BaseCommand(FindFolderDirectory);
+        public ICommand SyncGoogleCommand => _syncGoogleCommand ??= new BaseCommand(_ => { });
+
+        public override void OnEnable()
+        {
+            DirectoryFocused = true;
+        }
+
+        private void FindFolderDirectory(object o)
+        {
+            DirectoryFocused = false;
+
+            _openFileDialog.InitialDirectory = MinecraftDirectory;
+            var result = _openFileDialog.ShowDialog();
+
+            MinecraftDirectory = result switch
+            {
+                CommonFileDialogResult.Ok => _openFileDialog.FileName,
+                CommonFileDialogResult.None or CommonFileDialogResult.Cancel => "",
+                _ => throw new ArgumentOutOfRangeException()
+            };
+
+            DirectoryFocused = true;
+        }
+
+        protected override void Dispose(bool isDisposing)
+        {
+            if (_disposed) return;
+
+            if (isDisposing)
+            {
+                _openFileDialog.Dispose();
+            }
+
+            base.Dispose(isDisposing);
         }
     }
 }

@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "MCInstall": {
+      "commandName": "Project",
+      "remoteDebugEnabled": false
+    }
+  }
+}

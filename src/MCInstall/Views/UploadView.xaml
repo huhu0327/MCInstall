@@ -3,10 +3,17 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:b="clr-namespace:MCInstall.Behaviors"
+    xmlns:vm="clr-namespace:MCInstall.ViewModels"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Width="350"
     d:DesignHeight="450"
+    d:DataContext="{d:DesignInstance vm:UploadViewModel}"
     mc:Ignorable="d">
+
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVisibleConverter"/>
+    </UserControl.Resources>
 
     <StackPanel>
         <ListView Height="130">
@@ -49,17 +56,22 @@
         </ListView>
 
         <Button
+            Width="350"
             Margin="{StaticResource ControlTopMargin}"
             Background="{StaticResource Color1Brush}"
             Command="{Binding UploadCommand}"
             Content="업로드"
             Foreground="{StaticResource ForegroundLightBrush}" />
 
-        <TextBlock Margin="{StaticResource ControlTopMargin}" Text="코드" />
+        <TextBlock Width="350" Margin="0 5 0 0" Text="구글 로그인이 필요합니다!" Foreground="Red" Visibility="{Binding ErrorSentenceEnable, Converter={StaticResource BoolToVisibleConverter}}"/>
+
+        <TextBlock Width="350" Margin="{StaticResource ControlTopMargin}" Text="코드" />
         <TextBox
+            Width="350"
+            b:FocusBehavior.IsFocused="True"
             IsReadOnly="True"
             Style="{StaticResource CodeTextBox}"
-            Text="{Binding Code}" />
+            Text="{Binding Code, UpdateSourceTrigger=PropertyChanged}" />
     </StackPanel>
 
 </UserControl>

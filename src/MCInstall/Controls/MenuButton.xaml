@@ -118,7 +118,8 @@
     </UserControl.Resources>
 
     <RadioButton
+        Focusable="False"
         Command="{Binding Command, ElementName=this}"
         GroupName="{Binding GroupName, ElementName=this}"
-        Style="{StaticResource MenuButtonStyle}" />
+        Style="{StaticResource MenuButtonStyle}"/>
 </UserControl>

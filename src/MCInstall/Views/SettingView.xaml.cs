@@ -1,6 +1,5 @@
-﻿using MCInstall.ViewModels.Base;
-using MCInstall.Views.Base;
-using System.Diagnostics;
+﻿using MCInstall.Views.Base;
+using System;
 using System.Windows.Controls;
 
 namespace MCInstall.Views
@@ -13,6 +12,14 @@ namespace MCInstall.Views
         public SettingView()
         {
             InitializeComponent();
+            Dispatcher.ShutdownStarted += Dispatcher_ShutdownStarted;
+        }
+
+        private void Dispatcher_ShutdownStarted(object sender, System.EventArgs e)
+        {
+            Dispatcher.ShutdownStarted -= Dispatcher_ShutdownStarted;
+            if (DataContext is not IDisposable disposable) return;
+            disposable.Dispose();
         }
     }
 }

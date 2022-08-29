@@ -1,20 +1,24 @@
-﻿using System.Windows;
-using MCInstall.ViewModels;
-using MCInstall.ViewModels.Base;
+﻿using System;
+using System.Diagnostics;
 using MCInstall.Views.Base;
-using Microsoft.Extensions.Logging;
+using System.Windows;
 
 namespace MCInstall.Views
 {
-    /// <summary>
-    ///     Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainView : Window, IView
     {
-        public MainView(MainWindowViewModel viewModel)
+        public MainView()
         {
             InitializeComponent();
-            DataContext = viewModel;
+
+            Dispatcher.ShutdownStarted += Dispatcher_ShutdownStarted;
+        }
+
+        private void Dispatcher_ShutdownStarted(object sender, System.EventArgs e)
+        {
+            Dispatcher.ShutdownStarted -= Dispatcher_ShutdownStarted;
+            if (DataContext is not IDisposable disposable) return;
+            disposable.Dispose();
         }
     }
 }

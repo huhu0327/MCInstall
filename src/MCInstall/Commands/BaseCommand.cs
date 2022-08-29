@@ -1,12 +1,12 @@
 ﻿using System;
-using System.Windows.Input;
 
 namespace MCInstall.Commands
 {
-    public class BaseCommand : ICommand
+    public class BaseCommand : IBaseCommand
     {
         private readonly Action<object> _action;
         private readonly Predicate<object> _predicate;
+        private event EventHandler _canExecuteChanged;
 
         public BaseCommand(Action<object> action, Predicate<object> predicate = null)
         {
@@ -17,9 +17,12 @@ namespace MCInstall.Commands
 
         public event EventHandler CanExecuteChanged
         {
-            add => CommandManager.RequerySuggested += value;
-            remove => CommandManager.RequerySuggested -= value;
+            add => _canExecuteChanged += value;
+            remove => _canExecuteChanged -= value;
         }
+
+        public void RaiseCanExecuteChanged() => _canExecuteChanged?.Invoke(this, EventArgs.Empty);
+
 
         public bool CanExecute(object parameter)
         {

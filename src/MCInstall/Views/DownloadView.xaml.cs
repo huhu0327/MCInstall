@@ -1,5 +1,4 @@
 ﻿using MCInstall.Views.Base;
-using Microsoft.Extensions.Logging;
 using System.Windows.Controls;
 
 namespace MCInstall.Views
@@ -13,5 +12,7 @@ namespace MCInstall.Views
         {
             InitializeComponent();
         }
+
+
     }
 }

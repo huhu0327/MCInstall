@@ -1,9 +1,9 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
-    <FontFamily x:Key="KoPubLight">/MCInstall;component/Assets/Fonts/#KoPubWorld돋움체 Light</FontFamily>
-    <FontFamily x:Key="KoPubMedium">/MCInstall;component/Assets/Fonts/#KoPubWorld돋움체 Medium</FontFamily>
-    <FontFamily x:Key="KoPubBold">/MCInstall;component/Assets/Fonts/#KoPubWorld돋움체 Bold</FontFamily>
+    <FontFamily x:Key="PretendardLight">/MCInstall;component/Assets/Fonts/#Pretendard Light</FontFamily>
+    <FontFamily x:Key="PretendardMedium">/MCInstall;component/Assets/Fonts/#Pretendard Medium</FontFamily>
+    <FontFamily x:Key="PretendardBold">/MCInstall;component/Assets/Fonts/#Pretendard Bold</FontFamily>
     
     <FontFamily x:Key="FontAwesome">/MCInstall;component/Assets/Fonts/#FontAwesome</FontFamily>
     
