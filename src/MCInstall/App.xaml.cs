@@ -36,6 +36,8 @@ namespace MCInstall
             var mainView = _host.Services.GetRequiredService<MainView>();
             mainView?.Show();
 
+            Current.MainWindow = mainView;
+
             base.OnStartup(e);
         }
 
