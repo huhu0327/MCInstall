@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Windows;
 using System.Windows.Input;
@@ -26,7 +27,11 @@ namespace MCInstall.Behaviors
             if (dependencyObject is not FrameworkElement element || !(bool)args.NewValue) return;
 
             element.MouseMove += OnMove;
-            element.Unloaded += Unloaded;
+
+            Application.Current.MainWindow!.Closing += (_, _) =>
+            {
+                element.MouseMove -= OnMove;
+            };
         }
 
         private static void OnMove(object sender, MouseEventArgs args)
@@ -35,14 +40,6 @@ namespace MCInstall.Behaviors
 
             var window = Application.Current.MainWindow;
             window?.DragMove();
-        }
-
-        private static void Unloaded(object sender, RoutedEventArgs args)
-        {
-            if (sender is not FrameworkElement element) return;
-
-            element.MouseMove -= OnMove;
-            element.Unloaded -= Unloaded;
         }
     }
 }

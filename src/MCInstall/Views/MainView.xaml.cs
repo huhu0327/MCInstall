@@ -10,7 +10,6 @@ namespace MCInstall.Views
         public MainView()
         {
             InitializeComponent();
-
             Dispatcher.ShutdownStarted += Dispatcher_ShutdownStarted;
         }
 

@@ -37,19 +37,15 @@ namespace MCInstall.Behaviors
             if (oldValue == null || (value.HasValue && value.Value))
             {
                 element.Loaded += ElementLoaded;
-                element.Unloaded += ElementUnloaded;
+                Application.Current.MainWindow!.Closing += (_, _) =>
+                {
+                    element.Loaded -= ElementLoaded;
+                };
             }
             else element.Loaded -= ElementLoaded;
 
 
             FocusAndMoveCaret(element);
-        }
-
-        private static void ElementUnloaded(object sender, RoutedEventArgs e)
-        {
-            if (sender is not FrameworkElement element) return;
-            element.Unloaded -= ElementUnloaded;
-            element.Loaded -= ElementLoaded;
         }
 
         private static void ElementLoaded(object sender, RoutedEventArgs args)

@@ -2,6 +2,7 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Xml.Linq;
 
 namespace MCInstall.Behaviors
 {
@@ -27,15 +28,10 @@ namespace MCInstall.Behaviors
             if (dependencyObject is not TextBox textbox || (bool)args.NewValue) return;
 
             textbox.PreviewKeyDown += OnKeyDown;
-            textbox.Unloaded += Textbox_Unloaded;
-        }
-
-        private static void Textbox_Unloaded(object sender, RoutedEventArgs e)
-        {
-            if (sender is not TextBox textBox) return;
-
-            textBox.PreviewKeyDown -= OnKeyDown;
-            textBox.Unloaded -= Textbox_Unloaded;
+            Application.Current.MainWindow!.Closing += (_, _) =>
+            {
+                textbox.PreviewKeyDown -= OnKeyDown;
+            };
         }
 
         public static readonly DependencyProperty IsBlockKoreanProperty =
