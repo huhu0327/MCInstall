@@ -29,14 +29,12 @@ namespace MCInstall.ViewModels
             set
             {
                 if (_minecraftDirectory == value || string.IsNullOrEmpty(value)) return;
-
-                if (Directory.Exists(value))
-                {
-                    _minecraftDirectory = value;
-                }
+                InvalidDirectory = !Directory.Exists(value);
+                _minecraftDirectory = value;
             }
 
         }
+        public bool InvalidDirectory { get; set; }
 
         public bool? DirectoryFocused { get; set; }
 

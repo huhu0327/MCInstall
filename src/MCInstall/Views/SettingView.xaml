@@ -11,6 +11,10 @@
     d:DesignHeight="450"
     mc:Ignorable="d">
 
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVisibleConverter"/>
+    </UserControl.Resources>
+
     <StackPanel>
         <Button
             Background="{StaticResource Color1Brush}"
@@ -28,7 +32,7 @@
                 Style="{StaticResource CodeTextBox}"
                 FontSize="12"
                 Height="40"
-                Text="{Binding MinecraftDirectory}"
+                Text="{Binding MinecraftDirectory, UpdateSourceTrigger=PropertyChanged}"
                 TextAlignment="Left" />
             <Button
                 Width="35"
@@ -39,7 +43,7 @@
                 Content="..." />
         </StackPanel>
 
-        <TextBlock Foreground="Red">올바르지 않은 위치입니다.</TextBlock>
+        <TextBlock Margin="0 5 0 0" Foreground="Red" Visibility="{Binding InvalidDirectory, Converter={StaticResource BoolToVisibleConverter}}">올바르지 않은 위치입니다.</TextBlock>
 
     </StackPanel>
 
