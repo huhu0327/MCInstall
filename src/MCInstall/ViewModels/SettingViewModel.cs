@@ -30,10 +30,7 @@ namespace MCInstall.ViewModels
             {
                 if (_minecraftDirectory == value || string.IsNullOrEmpty(value)) return;
 
-                if (Directory.Exists(value))
-                {
-                    _minecraftDirectory = value;
-                }
+                _minecraftDirectory = value;
             }
 
         }
