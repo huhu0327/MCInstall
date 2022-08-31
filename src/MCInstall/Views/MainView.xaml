@@ -82,12 +82,12 @@
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="30" />
-                <RowDefinition />
+                <RowDefinition Height="380"/>
             </Grid.RowDefinitions>
 
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition />
+                <ColumnDefinition Width="170.5" />
+                <ColumnDefinition Width="424.5"/>
             </Grid.ColumnDefinitions>
 
             <Border Grid.ColumnSpan="2" Style="{StaticResource TitleBarStyle}">
@@ -144,17 +144,14 @@
             </Border>
 
             <Line
-                Grid.Column="0"
                 Grid.Row="1"
+                Grid.Column="0"
                 Opacity=".25"
                 Stroke="Gray"
-                X1="{Binding ActualWidth, ElementName=LeftArea}"
-                X2="{Binding ActualWidth, ElementName=LeftArea}"
+                X1="170.5"
+                X2="170.5"
                 Y1="0"
-                Y2="{Binding Height, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}" />
-
+                Y2="380" />
         </Grid>
-
     </Border>
-
 </Window>
