@@ -7,6 +7,7 @@ using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
+using MCInstall.ViewModels;
 using Microsoft.WindowsAPICodePack.Shell.PropertySystem;
 using ILogger = Microsoft.Extensions.Logging.ILogger;
 
@@ -33,8 +34,11 @@ namespace MCInstall
 
             //if (IsDuplicatedProcess()) return;
 
-            var mainView = _host.Services.GetRequiredService<MainView>();
-            mainView?.Show();
+            var mainView = new MainView
+            {
+                DataContext = _host.Services.GetRequiredService<MainWindowViewModel>()
+            };
+            mainView.Show();
 
             Current.MainWindow = mainView;
 

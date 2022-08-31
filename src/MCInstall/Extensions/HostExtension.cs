@@ -12,10 +12,6 @@ namespace MCInstall.Extensions
         {
             return hostBuilder.ConfigureServices(services =>
             {
-                services.AddTransient(s => new MainView
-                {
-                    DataContext = s.GetRequiredService<MainWindowViewModel>()
-                });
                 services.AddSingleton<MainWindowViewModel>();
 
                 services.AddSingleton<DownloadViewModel>();
