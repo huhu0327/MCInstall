@@ -28,7 +28,7 @@ namespace MCInstall.ViewModels
             get => _minecraftDirectory;
             set
             {
-                if (_minecraftDirectory == value || string.IsNullOrEmpty(value)) return;
+                if (_minecraftDirectory == value || value == null) return;
                 InvalidDirectory = !Directory.Exists(value);
                 _minecraftDirectory = value;
             }
@@ -56,7 +56,7 @@ namespace MCInstall.ViewModels
             MinecraftDirectory = result switch
             {
                 CommonFileDialogResult.Ok => _openFileDialog.FileName,
-                CommonFileDialogResult.None or CommonFileDialogResult.Cancel => "",
+                CommonFileDialogResult.None or CommonFileDialogResult.Cancel => null,
                 _ => throw new ArgumentOutOfRangeException()
             };
 
