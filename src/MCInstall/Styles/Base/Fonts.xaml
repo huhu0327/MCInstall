@@ -4,14 +4,4 @@
     <FontFamily x:Key="PretendardLight">/MCInstall;component/Assets/Fonts/#Pretendard Light</FontFamily>
     <FontFamily x:Key="PretendardMedium">/MCInstall;component/Assets/Fonts/#Pretendard Medium</FontFamily>
     <FontFamily x:Key="PretendardBold">/MCInstall;component/Assets/Fonts/#Pretendard Bold</FontFamily>
-    
-    <FontFamily x:Key="FontAwesome">/MCInstall;component/Assets/Fonts/#FontAwesome</FontFamily>
-    
-    <Style x:Key="IconStyle" TargetType="{x:Type TextBlock}">
-        <Setter Property="FontFamily" Value="{StaticResource FontAwesome}"></Setter>
-        <Setter Property="FontSize" Value="12"></Setter>
-        <Setter Property="HorizontalAlignment" Value="Center"></Setter>
-        <Setter Property="VerticalAlignment" Value="Center"></Setter>
-    </Style>
-
 </ResourceDictionary>
