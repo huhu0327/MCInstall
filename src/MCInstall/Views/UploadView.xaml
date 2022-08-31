@@ -6,6 +6,7 @@
     xmlns:b="clr-namespace:MCInstall.Behaviors"
     xmlns:vm="clr-namespace:MCInstall.ViewModels"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
     Width="350"
     d:DesignHeight="450"
     d:DataContext="{d:DesignInstance vm:UploadViewModel}"
@@ -68,10 +69,13 @@
         <TextBlock Width="350" Margin="{StaticResource ControlTopMargin}" Text="코드" />
         <TextBox
             Width="350"
-            b:FocusBehavior.IsFocused="True"
             IsReadOnly="True"
             Style="{StaticResource CodeTextBox}"
-            Text="{Binding Code, UpdateSourceTrigger=PropertyChanged}" />
+            Text="{Binding Code, UpdateSourceTrigger=PropertyChanged}" >
+            <i:Interaction.Behaviors>
+                <b:FocusBehavior IsFocused="True"></b:FocusBehavior> 
+            </i:Interaction.Behaviors>
+        </TextBox>
     </StackPanel>
 
 </UserControl>

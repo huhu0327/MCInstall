@@ -1,40 +1,26 @@
-﻿using System;
-using System.ComponentModel;
-using System.Diagnostics;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Input;
-using System.Windows.Threading;
+using Microsoft.Xaml.Behaviors;
 
 namespace MCInstall.Behaviors
 {
-    public class DragMoveBehavior
+    public class DragMoveBehavior : Behavior<UIElement>
     {
-        public static readonly DependencyProperty IsEnableProperty =
-            DependencyProperty.RegisterAttached("IsEnable", typeof(bool?), typeof(DragMoveBehavior), new PropertyMetadata(null, OnIsEnabledPropertyChanged));
-
-        public static void SetIsEnable(DependencyObject dependencyObject, bool? value)
+        protected override void OnAttached()
         {
-            dependencyObject.SetValue(IsEnableProperty, value);
+            base.OnAttached();
+
+            AssociatedObject.MouseMove += OnMove;
         }
 
-        public static bool? GetIsEnable(DependencyObject dependencyObject)
+        protected override void OnDetaching()
         {
-            return dependencyObject.GetValue(IsEnableProperty) as bool?;
+            AssociatedObject.MouseMove -= OnMove;
+
+            base.OnDetaching();
         }
 
-        private static void OnIsEnabledPropertyChanged(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs args)
-        {
-            if (dependencyObject is not FrameworkElement element || !(bool)args.NewValue) return;
-
-            element.MouseMove += OnMove;
-
-            Application.Current.MainWindow!.Closing += (_, _) =>
-            {
-                element.MouseMove -= OnMove;
-            };
-        }
-
-        private static void OnMove(object sender, MouseEventArgs args)
+        private void OnMove(object sender, MouseEventArgs args)
         {
             if (sender is not UIElement || args.LeftButton is not MouseButtonState.Pressed) return;
 

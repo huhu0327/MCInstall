@@ -1,60 +1,51 @@
-﻿using System;
-using System.Diagnostics;
+﻿using Microsoft.Xaml.Behaviors;
 using System.Windows;
 using System.Windows.Controls;
-using System.Xml.Linq;
-using Microsoft.VisualBasic.Devices;
 using Keyboard = System.Windows.Input.Keyboard;
 
 namespace MCInstall.Behaviors
 {
-    public static class FocusBehavior
+    public class FocusBehavior : Behavior<FrameworkElement>
     {
-        public static readonly DependencyProperty IsFocusedProperty =
-            DependencyProperty.RegisterAttached("IsFocused", typeof(bool?),
-                typeof(FocusBehavior), new FrameworkPropertyMetadata(null, IsFocusedChanged));
-
-        public static bool? GetIsFocused(DependencyObject dependencyObject)
+        protected override void OnAttached()
         {
-            _ = dependencyObject ?? throw new ArgumentNullException(nameof(dependencyObject));
-
-            return dependencyObject.GetValue(IsFocusedProperty) as bool?;
+            base.OnAttached();
+            AssociatedObject.Loaded += ElementLoaded;
         }
 
-        public static void SetIsFocused(DependencyObject dependencyObject, bool? value)
+        protected override void OnDetaching()
         {
-            _ = dependencyObject ?? throw new ArgumentNullException(nameof(dependencyObject));
+            AssociatedObject.Loaded -= ElementLoaded;
+            base.OnDetaching();
+        }
 
-            dependencyObject.SetValue(IsFocusedProperty, value);
+        public static readonly DependencyProperty IsFocusedProperty =
+            DependencyProperty.Register(
+                nameof(IsFocused),
+                typeof(bool),
+                typeof(FocusBehavior),
+                new FrameworkPropertyMetadata(false, IsFocusedChanged));
+
+        public bool IsFocused
+        {
+            get => (bool)GetValue(IsFocusedProperty);
+            set => SetValue(IsFocusedProperty, value);
         }
 
         private static void IsFocusedChanged(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs args)
         {
-            if (dependencyObject is not FrameworkElement element) return;
-
-            var oldValue = args.OldValue;
-            var value = GetIsFocused(element);
-            if (oldValue == null || (value.HasValue && value.Value))
-            {
-                element.Loaded += ElementLoaded;
-                Application.Current.MainWindow!.Closing += (_, _) =>
-                {
-                    element.Loaded -= ElementLoaded;
-                };
-            }
-            else element.Loaded -= ElementLoaded;
-
-
-            FocusAndMoveCaret(element);
+            if (dependencyObject is not FocusBehavior behavior || !(bool)args.NewValue) return;
+            
+            behavior.FocusAndMoveCaret(behavior.AssociatedObject);
         }
 
-        private static void ElementLoaded(object sender, RoutedEventArgs args)
+        private void ElementLoaded(object sender, RoutedEventArgs args)
         {
             if (sender is not FrameworkElement element) return;
             FocusAndMoveCaret(element);
         }
 
-        private static void FocusAndMoveCaret(object sender)
+        private void FocusAndMoveCaret(object sender)
         {
             if (sender is not TextBox tb) return;
             tb.Focus();

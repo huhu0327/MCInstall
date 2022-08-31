@@ -6,6 +6,7 @@
     xmlns:vm="clr-namespace:MCInstall.ViewModels"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
     Width="350"
     d:DesignHeight="450"
     d:DataContext="{d:DesignInstance vm:DownloadViewModel}"
@@ -15,12 +16,14 @@
         <TextBlock Text="코드" Width="350"/>
         <TextBox
             Width="350"
-            b:FocusBehavior.IsFocused="True"
-            b:KeyboardHelper.IsBlockSpacebar="True"
-            b:KeyboardHelper.IsBlockKorean="True"
             CharacterCasing="Upper"
             Style="{StaticResource CodeTextBox}"
-            Text="{Binding Code, UpdateSourceTrigger=PropertyChanged}" />
+            Text="{Binding Code, UpdateSourceTrigger=PropertyChanged}" >
+            <i:Interaction.Behaviors>
+                <b:KeyboardBehavior IsBlockKorean="True" IsBlockSpacebar="True"/>
+                <b:FocusBehavior IsFocused="True"/>
+            </i:Interaction.Behaviors>
+        </TextBox>
 
         <Button
             Width="350"
