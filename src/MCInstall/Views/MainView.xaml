@@ -6,7 +6,8 @@
     xmlns:vm="clr-namespace:MCInstall.ViewModels"
     xmlns:control="clr-namespace:MCInstall.Controls" 
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
     mc:Ignorable="d"
     d:DataContext="{d:DesignInstance vm:MainWindowViewModel}"
     Title="MCInstall"
@@ -36,7 +37,7 @@
         <Style x:Key="TitleBarStyle" TargetType="{x:Type Border}">
             <Setter Property="Background" Value="{StaticResource Color1Brush}"/>
             <Setter Property="CornerRadius" Value="15 15 0 0"/>
-            <Setter Property="b:DragMoveBehavior.IsEnable" Value="True"/>
+           
         </Style>
 
         <Style
@@ -91,6 +92,10 @@
             </Grid.ColumnDefinitions>
 
             <Border Grid.ColumnSpan="2" Style="{StaticResource TitleBarStyle}">
+                <i:Interaction.Behaviors>
+                    <b:DragMoveBehavior/>
+                </i:Interaction.Behaviors>
+
                 <Grid>
                     <Button Content="X" Style="{StaticResource CloseButtonStyle}" />
                 </Grid>

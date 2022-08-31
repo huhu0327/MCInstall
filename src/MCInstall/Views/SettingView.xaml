@@ -6,6 +6,7 @@
     xmlns:vm="clr-namespace:MCInstall.ViewModels"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
     Width="350"
     d:DataContext="{d:DesignInstance vm:SettingViewModel}"
     d:DesignHeight="450"
@@ -26,14 +27,17 @@
         <TextBlock Margin="{StaticResource ControlTopMargin}" Text=".minecraft 폴더 위치" />
         <StackPanel Orientation="Horizontal">
             <TextBox
-                b:FocusBehavior.IsFocused="{Binding DirectoryFocused, UpdateSourceTrigger=PropertyChanged}"
                 Width="310"
                 MaxLength="0"
                 Style="{StaticResource CodeTextBox}"
                 FontSize="12"
                 Height="40"
                 Text="{Binding MinecraftDirectory, UpdateSourceTrigger=PropertyChanged}"
-                TextAlignment="Left" />
+                TextAlignment="Left" >
+                <i:Interaction.Behaviors>
+                    <b:FocusBehavior IsFocused="{Binding DirectoryFocused, UpdateSourceTrigger=PropertyChanged}"></b:FocusBehavior>
+                </i:Interaction.Behaviors>
+            </TextBox>
             <Button
                 Width="35"
                 Margin="{StaticResource ControlLeftMargin}"
