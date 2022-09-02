@@ -63,7 +63,6 @@
         </Style>
 
         <Style TargetType="{x:Type control:MenuButton}">
-            <Setter Property="GroupName" Value="Menu" />
             <Setter Property="IconSize" Value="18" />
             <Setter Property="Height" Value="48" />
         </Style>
