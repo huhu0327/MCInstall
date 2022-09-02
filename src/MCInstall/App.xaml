@@ -11,9 +11,6 @@
 
                 <ResourceDictionary Source="/MCInstall;component/Styles/Base/BaseStyle.xaml" />
 
-                <ResourceDictionary Source="/MCInstall;component/Styles/Base/Buttons.xaml" />
-                <ResourceDictionary Source="/MCInstall;component/Styles/Base/Textboxes.xaml" />
-
                 <ResourceDictionary Source="/MCInstall;component/Styles/ViewModelLocator.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>

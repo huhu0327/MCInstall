@@ -7,6 +7,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+    xmlns:fa="http://schemas.fontawesome.io/icons/"
     Width="350"
     d:DataContext="{d:DesignInstance vm:SettingViewModel}"
     d:DesignHeight="450"
@@ -20,9 +21,11 @@
         <Button
             Background="{StaticResource Color1Brush}"
             Command="{Binding SyncGoogleCommand}"
-            Content="&#xf3aa;"
             Foreground="{StaticResource ForegroundLightBrush}">
             <!--<TextBlock Text="구글 연동" />-->
+            <Button.Content>
+                <fa:FontAwesome Icon="Google" FontSize="20"/>
+            </Button.Content>
         </Button>
         <TextBlock Margin="{StaticResource ControlTopMargin}" Text=".minecraft 폴더 위치" />
         <StackPanel Orientation="Horizontal">

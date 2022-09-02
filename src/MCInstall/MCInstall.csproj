@@ -1,5 +1,4 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
     <PropertyGroup>
         <OutputType>WinExe</OutputType>
         <TargetFramework>net6.0-windows</TargetFramework>
@@ -20,18 +19,24 @@
     </ItemGroup>
 
     <ItemGroup>
-        <Resource Include="Assets\Fonts\fontawesome-webfont.ttf">
-            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        <Resource Include="Assets\Fonts\Pretendard-Bold.otf">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Resource>
-        <Resource Include="Assets\Fonts\Pretendard-Bold.otf" />
-        <Resource Include="Assets\Fonts\Pretendard-Light.otf" />
-        <Resource Include="Assets\Fonts\Pretendard-Medium.otf" />
+        <Resource Include="Assets\Fonts\Pretendard-Light.otf">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Resource>
+        <Resource Include="Assets\Fonts\Pretendard-Medium.otf">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Resource>
     </ItemGroup>
 
     <ItemGroup>
       <PackageReference Include="Costura.Fody" Version="5.7.0">
         <PrivateAssets>all</PrivateAssets>
         <IncludeAssets>runtime; build; native; contentfiles; analyzers; compile; buildtransitive</IncludeAssets>
+      </PackageReference>
+      <PackageReference Include="FontAwesome.WPF" Version="4.7.0.9">
+	      <NoWarn>NU1701</NoWarn>
       </PackageReference>
       <PackageReference Include="Microsoft-WindowsAPICodePack-Shell" Version="1.1.4" />
       <PackageReference Include="Microsoft.Extensions.Hosting" Version="6.0.1" />
