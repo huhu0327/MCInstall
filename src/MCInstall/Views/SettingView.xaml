@@ -52,6 +52,8 @@
 
         <TextBlock Margin="0 5 0 0" Foreground="Red" Visibility="{Binding InvalidDirectory, Converter={StaticResource BoolToVisibleConverter}}">올바르지 않은 위치입니다.</TextBlock>
 
+        <Button Width="80" Content="저장" Margin="{StaticResource ControlTopMargin}"/>
+
     </StackPanel>
 
 </UserControl>
